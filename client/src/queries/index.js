@@ -27,6 +27,11 @@ export const QUERIES = {
             "testType": "" 
         }, 
         "query": "mutation ($testId: Int!, $userId: Int!, $feedback: String, $testType: String, $reason: String, $performanceScores: [PerformanceScoresType]) {\n  evaluateTest(data: {testId: $testId, userId: $userId, feedback: $feedback, testType: $testType, reason: $reason, performanceScores: $performanceScores}) {\n    success\n    message\n    __typename\n  }\n}\n" 
+    },
+    BATCHES: {
+        operationName: null,
+        variables: {},
+        query: "{\n  batches {\n    success\n    message\n    data {\n      course_id\n      batch_id\n      name\n      start_date\n      title\n      __typename\n    }\n    __typename\n  }\n}\n"
     }
 
 }

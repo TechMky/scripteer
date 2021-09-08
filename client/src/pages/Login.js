@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { Form, Button } from "react-bootstrap";
 import { withRouter } from 'react-router';
-import UserContext from '../context/UserContext';
+import AppContext from '../context/AppContext';
 import { getToken } from '../queries/service';
 
 function Login(props) {
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("yashasvi.sinha@attainu.com")
+    const [password, setPassword] = useState("attainu123")
 
-    const {setToken} = useContext(UserContext)
+    const {setToken} = useContext(AppContext)
 
 
     const handleSubmit = async e => {

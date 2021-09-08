@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.scss';
 
 import Home from './pages/Home';
-import { UserProvider } from './context/UserContext';
+import { AppProvider } from './context/AppContext';
 import Login from './pages/Login';
 import MainLayout from './layout/MainLayout';
 
 function App() {
   return (
-    <UserProvider>
+    <AppProvider>
       <MainLayout>
         <Router>
           <Switch>
@@ -22,7 +22,7 @@ function App() {
           </Switch>
         </Router>
       </MainLayout>
-    </UserProvider>
+    </AppProvider>
   );
 }
 
