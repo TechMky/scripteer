@@ -15,13 +15,16 @@ export async function getToken(email, password) {
         const response = (await service.post('/', data)).data
         console.log("🚀 ~ file: service.js ~ line 16 ~ getToken ~ response", response)
 
+        const accessToken = response.data.login.token
         // Set the AUTH token for any request
         service.interceptors.request.use(function (config) {
-            const token = response.data.login.token
-            config.headers.Authorization = token ? `Bearer ${token}` : '';
+            config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : '';
             return config;
         });
-        return { err: null, token: response.data.login.token };
+
+        localStorage.setItem('token', accessToken)
+
+        return { err: null, token: accessToken };
 
     } catch (error) {
         console.log("🚀 ~ file: service.js ~ line 19 ~ getToken ~ error", error)

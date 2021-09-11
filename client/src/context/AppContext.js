@@ -7,9 +7,10 @@ const AppContext = React.createContext({});
 
 export function AppProvider(props){
 
-    const [token, setToken] = useState(null)
-    const [batches, setBatches] = useState([1,2,3])
-    const [activeBatch, setActiveBatch] = useState(2)
+    const presentToken = localStorage.getItem('token')
+    const [token, setToken] = useState(presentToken || null)
+    const [batches, setBatches] = useState([])
+    const [activeBatch, setActiveBatch] = useState(null)
 
 
     return (
