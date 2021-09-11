@@ -9,21 +9,24 @@ function BatchSelector(props) {
 
     useEffect(() => {
 
-        // getAllBatch().then(({ batches }) => setBatches([...batches]))
+        getAllBatch().then(({ batches }) => {
+            setBatches([...batches])
+            setActiveBatch(batches[0].batch_id)
+        })
 
-    }, [])
+    }, [setBatches, setActiveBatch])
 
 
 
     return (
         <Container className="d-flex justify-content-center">
             {batches.map(batch => {
-                const batchId = batch
+                const {batch_id: batchId, name} = batch
 
                 return (
                     <Card onClick={() => setActiveBatch(batchId)} className={`shadow mx-3 ${activeBatch === batchId ? 'active-batch text-white': '' } `}>
                         <Card.Body>
-                            <Card.Title>Subramanyam</Card.Title>
+                            <Card.Title>{name}</Card.Title>
                             <Card.Text>
                                 Batch ID: {batchId}
                             </Card.Text>
