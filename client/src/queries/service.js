@@ -54,3 +54,49 @@ export async function getAllBatch() {
 
 
 }
+
+export async function getAllStudents(batchId) {
+
+    const data = QUERIES.ALL_STUDENTS
+    data.variables.batch_id = batchId
+
+    try {
+
+        const response = (await service.post('/', data)).data
+        console.log("🚀 ~ file: service.js ~ line 39 ~ getAllStudents ~ response", response)
+
+
+        return { err: null, students: response.data.getAllStudents.data };
+
+    } catch (error) {
+        console.log("🚀 ~ file: service.js ~ line 44 ~ getAllStudents ~ error", error)
+
+        return { err: error }
+    }
+
+
+}
+
+
+export async function getInstructorFeedback(instructorId, batchId) {
+
+    const data = QUERIES.INSTRUCTOR_FEEDBACK
+    data.variables.batch_id = batchId
+    data.variables.instructor_id = instructorId
+
+    try {
+
+        const response = (await service.post('/', data)).data
+        console.log("🚀 ~ file: service.js ~ line 39 ~ getInstructorFeedback ~ response", response)
+
+
+        return { err: null, feedbacks: response.data.instFeedback.data };
+
+    } catch (error) {
+        console.log("🚀 ~ file: service.js ~ line 44 ~ getInstructorFeedback ~ error", error)
+
+        return { err: error }
+    }
+
+
+}

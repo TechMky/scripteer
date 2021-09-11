@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Card, Container } from 'react-bootstrap'
+import { withRouter } from 'react-router'
 import AppContext from '../context/AppContext'
 import { getAllBatch } from '../queries/service'
 
@@ -10,11 +11,20 @@ function BatchSelector(props) {
     useEffect(() => {
 
         getAllBatch().then(({ batches }) => {
-            setBatches([...batches])
-            setActiveBatch(batches[0].batch_id)
+
+            if (Array.isArray(batches)) {
+                setBatches([...batches])
+                setActiveBatch(batches[0].batch_id)    
+            }else {
+
+                props.history.push('/login')
+
+            }
+
+            
         })
 
-    }, [setBatches, setActiveBatch])
+    }, [setBatches, setActiveBatch, props.history])
 
 
 
@@ -24,7 +34,7 @@ function BatchSelector(props) {
                 const {batch_id: batchId, name} = batch
 
                 return (
-                    <Card onClick={() => setActiveBatch(batchId)} className={`shadow mx-3 ${activeBatch === batchId ? 'active-batch text-white': '' } `}>
+                    <Card onClick={() => setActiveBatch(batchId)} key={batchId} className={`shadow mx-3 ${activeBatch === batchId ? 'active-batch text-white': '' } `}>
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Text>
@@ -40,4 +50,4 @@ function BatchSelector(props) {
     )
 }
 
-export default BatchSelector
+export default withRouter(BatchSelector)
