@@ -14,11 +14,14 @@ export function AppProvider(props){
         setInterceptor(presentToken)
     }
 
-    const [token, setToken] = useState(presentToken || null)
+    const [token, setStateToken] = useState(presentToken || null)
     const [batches, setBatches] = useState([])
     const [activeBatch, setActiveBatch] = useState(0)
 
-
+    const setToken = (newToken) => {
+        setInterceptor(newToken)
+        setStateToken(newToken)
+    }
     return (
         <AppContext.Provider value={{token, setToken, batches, setBatches, activeBatch, setActiveBatch}}>
             {props.children}
