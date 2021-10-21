@@ -34,7 +34,7 @@ function BatchSelector(props) {
             {batches.map(batch => {
                 const { batch_id: batchId, name } = batch
                 return (
-                    <Col>
+                    <Col key={batchId}>
                         <Card hoverable onClick={() => setActiveBatch(batchId)} className={`${activeBatch === batchId ? 'active-batch' : ''} `} key={batchId}>
                             <Meta title={name} description={`Batch Id: ${batchId}`} />
                         </Card>
