@@ -1,11 +1,11 @@
 export const QUERIES = {
-
+    
     BASE_URL: 'https://pluto.attainu.com/',
     LOGIN: {
         "operationName": null,
         "variables": {
-            "email": "yashasvi.sinha@attainu.com",
-            "password": "attainu123",
+            "email": "",
+            "password": "",
             "appType": "UNI"
         },
         "query": "mutation ($email: String!, $password: String!, $appType: String!) {\n  login(data: {email: $email, password: $password, appType: $appType}) {\n    success\n    token\n    message\n    userId\n    userRoles\n    data {\n      name\n      email\n      phone\n      paymentDetailsId\n      __typename\n    }\n    __typename\n  }\n}\n"
@@ -13,7 +13,7 @@ export const QUERIES = {
     INSTRUCTOR_PROFILE: {
         "operationName": null,
         "variables": {
-
+            
         },
         "query": "{\n  userDetails {\n    success\n    message\n    data {\n      id\n      firstname\n      lastname\n      phone\n      email\n      linkedin_url\n      profile_pic\n      specialization\n      __typename\n    }\n    __typename\n  }\n}\n"
     },
@@ -53,5 +53,6 @@ export const QUERIES = {
         },
         "query": "query ($batch_id: Int!, $test_id: Int) {\n  getAllStudents(batch_id: $batch_id, test_id: $test_id) {\n    success\n    message\n    data {\n      user_id\n      name\n      email\n      roll_number\n      is_active\n      submission_url {\n        github_url\n        deployed_url\n        hackerrank\n        hackerearth\n        project_report\n        google_drive\n        __typename\n      }\n      status\n      result\n      scores {\n        topic_id\n        topic_name\n        marks\n        max_mark\n        __typename\n      }\n      plag_result {\n        percent\n        url\n        __typename\n      }\n      plag_false_positive\n      feedback_for_plag\n      plag_completed_at\n      plag_error\n      __typename\n    }\n    __typename\n  }\n}\n"
     }
-
+    
 }
+console.log(`🚀 ~ process.env.EMAIL`, process.env.EMAIL)

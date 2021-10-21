@@ -33,7 +33,7 @@ function Login(props) {
                 <Form
                     name="normal_login"
                     className="login-form"
-                    initialValues={{ email: "yashasvi.sinha@attainu.com", password: "attainu123" }}
+                    initialValues={{ email: "", password: "" }}
                     onFinish={onFinish}
                     style={{margin: '1rem 1rem'}}
                 >
