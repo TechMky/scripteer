@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.scss"],"names":[],"mappings":"AAIA,uBACI,wBAAA,CAGJ,MACI,eAAA","file":"main.6db10036.chunk.css","sourcesContent":["\r\n\r\n@import '~antd/dist/antd.css';\r\n\r\n.ant-card.active-batch{\r\n    border: 1px solid #49aa19;\r\n}\r\n\r\n.my-2{\r\n    margin: 1.8rem 0;\r\n}"]}
