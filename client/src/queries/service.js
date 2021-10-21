@@ -3,6 +3,12 @@ import { QUERIES } from '.';
 
 const service = axios.create({ baseURL: QUERIES.BASE_URL, method: 'POST' })
 
+export function setInterceptor(accessToken) {
+    service.interceptors.request.use(function (config) {
+        config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : '';
+        return config;
+    });
+}
 
 export async function getToken(email, password) {
 
@@ -17,10 +23,7 @@ export async function getToken(email, password) {
 
         const accessToken = response.data.login.token
         // Set the AUTH token for any request
-        service.interceptors.request.use(function (config) {
-            config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : '';
-            return config;
-        });
+        setInterceptor(accessToken)
 
         localStorage.setItem('token', accessToken)
 

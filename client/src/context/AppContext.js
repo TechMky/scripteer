@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { setInterceptor } from "../queries/service";
 
 
 const AppContext = React.createContext({});
@@ -8,6 +9,11 @@ const AppContext = React.createContext({});
 export function AppProvider(props){
 
     const presentToken = localStorage.getItem('token')
+
+    if (presentToken) {
+        setInterceptor(presentToken)
+    }
+
     const [token, setToken] = useState(presentToken || null)
     const [batches, setBatches] = useState([])
     const [activeBatch, setActiveBatch] = useState(0)
