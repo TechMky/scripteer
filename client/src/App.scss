@@ -2,6 +2,10 @@
 
 @import '~antd/dist/antd.css';
 
-.active-batch{
-    background: linear-gradient(to left, #00c6ff, #0072ff);
+.ant-card.active-batch{
+    border: 1px solid #49aa19;
+}
+
+.my-2{
+    margin: 1.8rem 0;
 }
