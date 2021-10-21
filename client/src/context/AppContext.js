@@ -10,7 +10,7 @@ export function AppProvider(props){
     const presentToken = localStorage.getItem('token')
     const [token, setToken] = useState(presentToken || null)
     const [batches, setBatches] = useState([])
-    const [activeBatch, setActiveBatch] = useState(null)
+    const [activeBatch, setActiveBatch] = useState(0)
 
 
     return (

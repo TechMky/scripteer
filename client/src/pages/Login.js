@@ -1,43 +1,70 @@
-import React, { useContext, useState } from 'react'
-import { Form, Button } from "react-bootstrap";
+import React, { useContext } from 'react'
 import { withRouter } from 'react-router';
 import AppContext from '../context/AppContext';
 import { getToken } from '../queries/service';
+import { Form, Input, Button, Row, Col } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 function Login(props) {
 
-    const [email, setEmail] = useState("yashasvi.sinha@attainu.com")
-    const [password, setPassword] = useState("attainu123")
 
-    const {setToken} = useContext(AppContext)
+    const { setToken } = useContext(AppContext)
 
 
-    const handleSubmit = async e => {
-        e.preventDefault()
 
-        const {err, token} = await getToken(email, password)
+    const onFinish = async (values) => {
+        console.log('Success:', values);
+        const { email, password} = values
+
+        const { err, token } = await getToken(email, password)
         if (!err) {
             setToken(token)
             props.history.push('/')
         }
-    }
+    };
 
+    // const onFinishFailed = (errorInfo) => {
+    //     console.log('Failed:', errorInfo);
+    // };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" required value={email} onChange={(e) => setEmail(e.target.value)}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)}/>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
-    )
+        <Row justify="center" >
+            <Col span={12} md={8}>
+                <Form
+                    name="normal_login"
+                    className="login-form"
+                    initialValues={{ email: "yashasvi.sinha@attainu.com", password: "attainu123" }}
+                    onFinish={onFinish}
+                    style={{margin: '1rem 1rem'}}
+                >
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, message: 'Please input your Email!' }]}
+                    >
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your Password!' }]}
+                    >
+                        <Input
+                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" className="login-form-button">
+                            Log in
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Col>
+
+        </Row>
+
+    );
 }
 
 export default withRouter(Login)

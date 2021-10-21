@@ -1,11 +1,21 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Layout, Row, Col } from "antd";
+
+const { Content, Header, Footer } = Layout
 
 function MainLayout(props) {
     return (
-        <Container>
-            {props.children}
-        </Container>
+        <Layout>
+            <Header></Header>
+            <Content>
+                <Row justify='center'>
+                    <Col span={22}>
+                        {props.children}
+                    </Col>
+                </Row>
+            </Content>
+            <Footer>Footer</Footer>
+        </Layout>
     )
 }
 
