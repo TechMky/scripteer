@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext';
 import { getToken } from '../queries/service';
 import { Form, Input, Button, Row, Col } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { BASE_URL } from '../urlLinks';
 
 function Login(props) {
 
@@ -19,7 +20,7 @@ function Login(props) {
         const { err, token } = await getToken(email, password)
         if (!err) {
             setToken(token)
-            props.history.push('/')
+            props.history.push(BASE_URL)
         }
     };
 

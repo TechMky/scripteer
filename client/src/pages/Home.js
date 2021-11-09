@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import BatchSelector from '../components/BatchSelector';
 import FeedbackReport from '../components/FeedbackReport';
 import AppContext from '../context/AppContext';
+import { LOGIN_URL } from '../urlLinks';
 
 function Home() {
 
@@ -10,7 +11,7 @@ function Home() {
 
 
   if (!token) {
-    return <Redirect to='/login'/>
+    return <Redirect to={LOGIN_URL}/>
   }
 
 
