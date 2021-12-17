@@ -4,6 +4,7 @@ import AppContext from '../context/AppContext'
 import { getAllBatch } from '../queries/service'
 import { Card, Col, Row } from "antd";
 import Meta from 'antd/lib/card/Meta';
+import { LOGIN_URL } from '../urlLinks';
 
 function BatchSelector(props) {
 
@@ -18,7 +19,7 @@ function BatchSelector(props) {
                 setActiveBatch(batches[0].batch_id)
             } else {
 
-                props.history.push('/login')
+                props.history.push(LOGIN_URL)
 
             }
 
